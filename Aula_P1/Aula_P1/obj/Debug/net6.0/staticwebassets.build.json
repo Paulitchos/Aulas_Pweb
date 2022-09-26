@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "EO6aPpx+8s8OW0wiZH505aB136onl1vGuG7R6WXl508=",
+  "Hash": "0k1/o8mJRi6inKFripF25/cjWB+D78UM5cNjD6/TK9Y=",
   "Source": "Aula_P1",
   "BasePath": "_content/Aula_P1",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\paulo\\OneDrive\\Área de Trabalho\\Pweb_P\\Aulas_Pweb\\Aula_P1\\Aula_P1\\wwwroot\\img\\isec_logo.png",
+      "SourceId": "Aula_P1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\paulo\\OneDrive\\Área de Trabalho\\Pweb_P\\Aulas_Pweb\\Aula_P1\\Aula_P1\\wwwroot\\",
+      "BasePath": "_content/Aula_P1",
+      "RelativePath": "img/isec_logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\isec_logo.png"
     },
     {
       "Identity": "C:\\Users\\paulo\\OneDrive\\Área de Trabalho\\Pweb_P\\Aulas_Pweb\\Aula_P1\\Aula_P1\\wwwroot\\js\\site.js",
