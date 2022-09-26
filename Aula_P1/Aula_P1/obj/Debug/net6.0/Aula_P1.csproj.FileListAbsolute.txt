@@ -68,3 +68,4 @@ C:\Users\paulo\OneDrive\Área de Trabalho\Pweb_P\Aulas_Pweb\Aula_P1\Aula_P1\obj\
 C:\Users\paulo\OneDrive\Área de Trabalho\Pweb_P\Aulas_Pweb\Aula_P1\Aula_P1\obj\Debug\net6.0\Aula_P1.pdb
 C:\Users\paulo\OneDrive\Área de Trabalho\Pweb_P\Aulas_Pweb\Aula_P1\Aula_P1\obj\Debug\net6.0\Aula_P1.genruntimeconfig.cache
 C:\Users\paulo\OneDrive\Área de Trabalho\Pweb_P\Aulas_Pweb\Aula_P1\Aula_P1\obj\Debug\net6.0\ref\Aula_P1.dll
+C:\Users\paulo\OneDrive\Área de Trabalho\Pweb_P\Aulas_Pweb\Aula_P1\Aula_P1\bin\Debug\net6.0\BootstrapIcons.AspNetCore.dll

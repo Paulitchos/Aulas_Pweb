@@ -23,7 +23,17 @@ namespace Aula_P1.Controllers
             return View();
         }
 
-        public IActionResult Contacts()
+        public IActionResult Contactos()
+        {
+            return View();
+        }
+
+        public IActionResult QuemSomos()
+        {
+            return View();
+        }
+
+        public IActionResult Cursos()
         {
             return View();
         }

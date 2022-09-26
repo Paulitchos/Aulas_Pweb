@@ -19,8 +19,12 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/Contacts.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0cy5jc2h0bWw=
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/Contactos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0b3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/Cursos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDdXJzb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/Index.cshtml]
@@ -29,6 +33,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/QuemSomos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxRdWVtU29tb3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Shared/Error.cshtml]
