@@ -19,6 +19,26 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Cursos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Cursos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Cursos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Cursos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Cursos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ3Vyc29zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Home/Contactos.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDb250YWN0b3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -41,6 +61,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Shared/_Layout2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Shared/_LoginPartial.cshtml]
