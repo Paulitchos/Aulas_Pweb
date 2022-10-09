@@ -18,5 +18,7 @@ namespace Aula_P1.Models
 
         public int IdadeMinima { get; set; }
 
+        public decimal Price { get; set; }
+
     }
 }
