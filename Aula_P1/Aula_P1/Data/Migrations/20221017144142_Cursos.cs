@@ -36,6 +36,13 @@ namespace Aula_P1.Data.Migrations
                 nullable: false,
                 defaultValue: 0);
 
+            migrationBuilder.AddColumn<decimal>(
+                name: "Price",
+                table: "Cursos",
+                type: "decimal(18,2)",
+                nullable: false,
+                defaultValue: 0m);
+
             migrationBuilder.AddColumn<string>(
                 name: "Rquisitos",
                 table: "Cursos",
@@ -60,6 +67,10 @@ namespace Aula_P1.Data.Migrations
 
             migrationBuilder.DropColumn(
                 name: "IdadeMinima",
+                table: "Cursos");
+
+            migrationBuilder.DropColumn(
+                name: "Price",
                 table: "Cursos");
 
             migrationBuilder.DropColumn(

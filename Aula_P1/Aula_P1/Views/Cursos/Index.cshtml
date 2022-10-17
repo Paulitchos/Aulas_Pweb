@@ -10,6 +10,15 @@
 <p>
     <a asp-action="Create">Adicionar Curso</a>
 </p>
+
+<p>  
+    <form method="post" asp-action="">
+        <label for="textoAPesquisar">Pesquisa de Cursos</label>
+        <input type="text" name="cname" id="cname" placeholder="Curso a pesquisar">
+        <input type="submit" value="Search">
+    </form>
+</p>
+
 <td>
     <a asp-action="Index">Todos</a> |
     <a asp-action="Index" asp-route-disponivel="true">Ativos</a> |

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Aula_P1.Data;
 using Aula_P1.Models;
+using System.Xml.Linq;
+using Aula_P1.Data.Migrations;
 
 namespace Aula_P1.Controllers
 {
@@ -26,7 +28,38 @@ namespace Aula_P1.Controllers
                 return View(await _context.Cursos.ToListAsync());
             else
                 return View(await _context.Cursos.Where(c => c.Disponivel == Disponivel).ToListAsync());
+
         }
+        [HttpPost]
+        public async Task<IActionResult> Index(string cname)
+        {
+           /* var result = from s in _context.Cursos
+                         where s.Contains(cname)
+                         select s;
+
+           */
+
+            return View(await _context.Cursos.Where(c => c.Nome.Contains(cname)).ToListAsync());
+
+        }
+
+        // GET: Search
+        public async Task<IActionResult> Search(string cname)
+        {
+
+            return View(await _context.Cursos.Where(c => c.Nome.Contains(cname)).ToListAsync());
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search([Bind("textoAPesquisar")] Search pesquisaCurso)
+        {
+            
+            return View();
+        }
+
+
 
         // GET: Cursos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -160,5 +193,7 @@ namespace Aula_P1.Controllers
         {
           return _context.Cursos.Any(e => e.Id == id);
         }
+
+        
     }
 }

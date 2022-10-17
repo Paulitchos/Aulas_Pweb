@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aula_P1.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221009210003_Cursos_01")]
-    partial class Cursos_01
+    [Migration("20221017144142_Cursos")]
+    partial class Cursos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
