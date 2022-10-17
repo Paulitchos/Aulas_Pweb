@@ -33,30 +33,33 @@ namespace Aula_P1.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string cname)
         {
-           /* var result = from s in _context.Cursos
-                         where s.Contains(cname)
-                         select s;
+             var result = from s in _context.Cursos
+                          where s.Nome.Contains(cname)
+                          select s;
 
-           */
+             return View(await result.ToListAsync());
+            
 
-            return View(await _context.Cursos.Where(c => c.Nome.Contains(cname)).ToListAsync());
+            //return View(await _context.Cursos.Where(c => c.Nome.Contains(cname)).ToListAsync());
 
         }
 
         // GET: Search
-        public async Task<IActionResult> Search(string cname)
+        public async Task<IActionResult> Search()
         {
-
-            return View(await _context.Cursos.Where(c => c.Nome.Contains(cname)).ToListAsync());
-
+            
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Search([Bind("textoAPesquisar")] Search pesquisaCurso)
         {
-            
+            List<Curso> ListaDeCursos = pesquisaCurso.ListaDeCursos;
+            int numResultados = pesquisaCurso.NumResultados;
+
             return View();
+
         }
 
 

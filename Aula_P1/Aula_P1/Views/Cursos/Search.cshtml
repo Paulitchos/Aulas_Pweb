@@ -7,15 +7,12 @@
 
 <h1>Search</h1>
 
-<p>
-    <a asp-action="Create">Adicionar Curso</a>
-</p>
-
 <p>  
-    @using (Html.BeginForm("Search", "CursosController", FormMethod.Post))
-    {
-        
-    }
+    <form method="post">
+        <label for="textoAPesquisar">Pesquisa de Cursos</label>
+        <input type="text" name="textoAPesquisar" id="textoAPesquisar" placeholder="Curso a pesquisar">
+        <input type="submit" value="Search">
+    </form>
 </p>
 
 
