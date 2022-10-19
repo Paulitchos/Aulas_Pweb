@@ -47,18 +47,22 @@ namespace Aula_P1.Controllers
         // GET: Search
         public async Task<IActionResult> Search()
         {
-            
-            return View();
+            PesquisaCursoViewModel pesquisaCurso = new PesquisaCursoViewModel();
+            pesquisaCurso.ListaDeCursos = _context.Cursos.ToList();
+            pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count;
+
+            return View(pesquisaCurso);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Search([Bind("textoAPesquisar")] Search pesquisaCurso)
+        public async Task<IActionResult> Search([Bind("TextoAPesquisar")] PesquisaCursoViewModel pesquisaCurso)
         {
-            List<Curso> ListaDeCursos = pesquisaCurso.ListaDeCursos;
-            int numResultados = pesquisaCurso.NumResultados;
 
-            return View();
+            pesquisaCurso.ListaDeCursos = _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar)).ToList();
+            pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count();
+
+            return View(pesquisaCurso);
 
         }
 

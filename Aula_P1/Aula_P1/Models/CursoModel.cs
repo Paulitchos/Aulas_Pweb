@@ -10,6 +10,9 @@ namespace Aula_P1.Models
 
         public string Categoria { get; set; }
 
+        public int? CategoriaId { get; set; }
+        public Categoria categoria{ get; set; }
+
         public string Descricao { get; set; }
 
         public string DescricaoResumida { get; set; }
