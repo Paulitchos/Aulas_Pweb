@@ -6,16 +6,18 @@
 }
 
 <h1>Lista de cursos (<a asp-action="Create">adicionar</a>)</h1>
-<Form method="post">
+<form method="post">
     <label asp-for="TextoAPesquisar"></label>
-    <input asp-for="TextoAPesquisar" />
+    <select name="CategoriaID" asp.items="ViewBag.ListaDeCategorias"></select>
     <input type="submit" value="pesquisar" />
-</Form>
+</form>
 <p>
     <a asp-action="Index">Todos</a> |
     <a asp-action="Index" asp-route-disponivel="true">Activos</a> |
     <a asp-action="Index" asp-route-disponivel="false">Inactivos</a>
 </p>
+
+<p>Existem @Model.NumResultados cursos</p>
 <table class="table table-bordered table-striped table-hover">
     <thead>
         <tr>
@@ -24,9 +26,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Disponivel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Categoria)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Descricao)
@@ -43,6 +42,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Price)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().CategoriaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().categoria.Nome)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -55,9 +60,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Disponivel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Categoria)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Descricao)
@@ -73,6 +75,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoriaId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.categoria.Nome)
                 </td>
 
                 <td>

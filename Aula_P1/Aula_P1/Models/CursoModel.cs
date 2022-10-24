@@ -8,7 +8,6 @@ namespace Aula_P1.Models
 
         public bool Disponivel { get; set; }
 
-        public string Categoria { get; set; }
 
         public int? CategoriaId { get; set; }
         public Categoria categoria{ get; set; }

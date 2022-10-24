@@ -56,6 +56,7 @@ namespace Aula_P1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Nome,Disponivel,Descricao")] Categoria categoria)
         {
+            ModelState.Remove(nameof(categoria.Cursos));
             if (ModelState.IsValid)
             {
                 _context.Add(categoria);
@@ -92,6 +93,8 @@ namespace Aula_P1.Controllers
             {
                 return NotFound();
             }
+
+            ModelState.Remove(nameof(categoria.Cursos));
 
             if (ModelState.IsValid)
             {

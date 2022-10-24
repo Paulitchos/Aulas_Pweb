@@ -47,8 +47,9 @@ namespace Aula_P1.Controllers
         // GET: Search
         public async Task<IActionResult> Search()
         {
+            ViewData["ListaDeCategorias"] = new SelectList(_context.Categoria.ToList(), "Id", "Nome");
             PesquisaCursoViewModel pesquisaCurso = new PesquisaCursoViewModel();
-            pesquisaCurso.ListaDeCursos = _context.Cursos.ToList();
+            pesquisaCurso.ListaDeCursos = await _context.Cursos.Include("categoria").ToListAsync();
             pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count;
 
             return View(pesquisaCurso);
@@ -59,7 +60,7 @@ namespace Aula_P1.Controllers
         public async Task<IActionResult> Search([Bind("TextoAPesquisar")] PesquisaCursoViewModel pesquisaCurso)
         {
 
-            pesquisaCurso.ListaDeCursos = _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar)).ToList();
+            pesquisaCurso.ListaDeCursos = await _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar)).ToListAsync();
             pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count();
 
             return View(pesquisaCurso);
@@ -76,7 +77,7 @@ namespace Aula_P1.Controllers
                 return NotFound();
             }
 
-            var curso = await _context.Cursos
+            var curso = await _context.Cursos.Include("categoria")
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (curso == null)
             {
@@ -89,6 +90,7 @@ namespace Aula_P1.Controllers
         // GET: Cursos/Create
         public IActionResult Create()
         {
+            ViewData["ListaDeCategorias"] = new SelectList(_context.Categoria.ToList(),"Id","Nome");
             return View();
         }
 
@@ -97,8 +99,9 @@ namespace Aula_P1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Disponivel,Categoria,Descricao,DescricaoResumida,Rquisitos,IdadeMinima,Price")] Curso curso)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Disponivel,Descricao,DescricaoResumida,Rquisitos,IdadeMinima,Price,CategoriaId")] Curso curso)
         {
+            ModelState.Remove(nameof(curso.categoria));
             if (ModelState.IsValid)
             {
                 _context.Add(curso);
@@ -121,6 +124,9 @@ namespace Aula_P1.Controllers
             {
                 return NotFound();
             }
+
+            ViewData["ListaDeCategorias"] = new SelectList(_context.Categoria.ToList(), "Id", "Nome",curso.CategoriaId);
+
             return View(curso);
         }
 
@@ -129,13 +135,14 @@ namespace Aula_P1.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Disponivel,Categoria,Descricao,DescricaoResumida,Rquisitos,IdadeMinima,Price")] Curso curso)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Disponivel,Descricao,DescricaoResumida,Rquisitos,IdadeMinima,Price,CategoriaId")] Curso curso)
         {
             if (id != curso.Id)
             {
                 return NotFound();
             }
 
+            ModelState.Remove(nameof(curso.categoria));
             if (ModelState.IsValid)
             {
                 try
