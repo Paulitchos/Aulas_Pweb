@@ -59,8 +59,8 @@ namespace Aula_P1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Search([Bind("TextoAPesquisar")] PesquisaCursoViewModel pesquisaCurso)
         {
-
-            pesquisaCurso.ListaDeCursos = await _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar)).ToListAsync();
+            ViewData["ListaDeCategorias"] = new SelectList(_context.Categoria.ToList(), "Id", "Nome");
+            pesquisaCurso.ListaDeCursos = await _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar))  .ToListAsync();
             pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count();
 
             return View(pesquisaCurso);

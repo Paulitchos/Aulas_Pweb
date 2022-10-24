@@ -8,7 +8,8 @@
 <h1>Lista de cursos (<a asp-action="Create">adicionar</a>)</h1>
 <form method="post">
     <label asp-for="TextoAPesquisar"></label>
-    <select name="CategoriaID" asp.items="ViewBag.ListaDeCategorias"></select>
+    <input asp-for="TextoAPesquisar" />
+    <select name="CategoriaId" asp-items="ViewBag.ListaDeCategorias"></select>
     <input type="submit" value="pesquisar" />
 </form>
 <p>
