@@ -15,5 +15,7 @@ namespace Aula_P1.Data
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
 
+        public DbSet<Agendamento> Agendamentos { get; set; }
+
     }
 }

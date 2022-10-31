@@ -1,4 +1,20 @@
-﻿
-@*
-    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@{
+    ViewData["Title"] = "QuickSearchPartial";
+    //Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@using (Html.BeginForm("Search", "Cursos", FormMethod.Get))
+{
+    <div class="form-inline d-flex">
+        <input type="text" name="TextoAPesquisar"
+           id="TextoAPesquisar"
+           placeholder="Curso a procurar"
+           class="form-control col-form-sm" />
+        <button type="submit"
+            class="btn btn-default ms-2 me-2">
+            <svg bootstrap-icon="Search" class="text-warning" width="24" height="24" arial-label="Search"></svg>
+        </button>
+    </div>
+}
+
+

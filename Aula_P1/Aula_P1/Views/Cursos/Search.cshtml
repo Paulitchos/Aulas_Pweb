@@ -1,12 +1,15 @@
 ﻿@model Aula_P1.Models.PesquisaCursoViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Search";
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-<h1>Lista de cursos (<a asp-action="Create">adicionar</a>)</h1>
-<form method="post">
+<h1></h1>
+
+<h1>(<a asp-action="Create">adicionar</a>)</h1>
+
+@*<form method="post">
     <label asp-for="TextoAPesquisar"></label>
     <input asp-for="TextoAPesquisar" />
     <select name="CategoriaId" asp-items="ViewBag.ListaDeCategorias"></select>
@@ -16,81 +19,52 @@
     <a asp-action="Index">Todos</a> |
     <a asp-action="Index" asp-route-disponivel="true">Activos</a> |
     <a asp-action="Index" asp-route-disponivel="false">Inactivos</a>
-</p>
+</p>*@
+
+@if(Model.NumResultados == 0){
+    <p class="alert alert-warning">
+        Não foi possível encontrar dados com a pesquisa efetuada
+    </p>
+}else{
 
 <p>Existem @Model.NumResultados cursos</p>
-<table class="table table-bordered table-striped table-hover">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Disponivel)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Descricao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().DescricaoResumida)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Rquisitos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().IdadeMinima)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().CategoriaId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ListaDeCursos.FirstOrDefault().categoria.Nome)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ListaDeCursos)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Disponivel)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descricao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DescricaoResumida)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rquisitos)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdadeMinima)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoriaId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.categoria.Nome)
-                </td>
+<div class="row row-cols-1 row-cols-md-3 text-center">
+    @foreach (var item in Model.ListaDeCursos)
+    {
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">
+                        @Html.Raw(item.Nome.ToLower().Replace(Model.TextoAPesquisar,"<span class=\"bg-warning\">" + Model.TextoAPesquisar + "</span>"))
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">
+                        <small class="text-muted fw-light"></small>
+                    </h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>
+                            Requisitos:
+                            @Html.DisplayFor(modelItem => @item.Rquisitos)
+                        </li>
+                        <li>
+                            Idade Minima:
+                            @Html.DisplayFor(modelItem => @item.IdadeMinima)
+                        </li>
+                        <li>
+                            Descricao Resumida:
+                            @Html.DisplayFor(modelItem => @item.DescricaoResumida)
+                        </li>
+                    </ul>
+                    <a asp-controller="Cursos" asp-action="Details" asp-route-id="@item.Id" type="button" class="w-100 btn btn-lg btn-outline-primary">
+                        Saber
+                        mais
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
 
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-</>
+   
+</div>
+}

@@ -45,12 +45,25 @@ namespace Aula_P1.Controllers
         }
 
         // GET: Search
-        public async Task<IActionResult> Search()
+        public async Task<IActionResult> Search(string? TextoAPesquisar)
         {
             ViewData["ListaDeCategorias"] = new SelectList(_context.Categoria.ToList(), "Id", "Nome");
             PesquisaCursoViewModel pesquisaCurso = new PesquisaCursoViewModel();
-            pesquisaCurso.ListaDeCursos = await _context.Cursos.Include("categoria").ToListAsync();
-            pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count;
+            pesquisaCurso.TextoAPesquisar = TextoAPesquisar != null ? TextoAPesquisar: "";
+
+            if (string.IsNullOrEmpty(TextoAPesquisar))
+            {
+                ViewData["Title"] = "Lista de Cursos";
+                pesquisaCurso.ListaDeCursos = await _context.Cursos.Include("categoria").ToListAsync();
+
+            } else
+            {
+                ViewData["Title"] = "Resultados da pesquisa por " + pesquisaCurso.TextoAPesquisar;
+                pesquisaCurso.ListaDeCursos = await _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar)
+                || c.Descricao.Contains(pesquisaCurso.TextoAPesquisar)).ToListAsync();
+            }
+            
+            pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count();
 
             return View(pesquisaCurso);
         }
@@ -60,7 +73,7 @@ namespace Aula_P1.Controllers
         public async Task<IActionResult> Search([Bind("TextoAPesquisar")] PesquisaCursoViewModel pesquisaCurso)
         {
             ViewData["ListaDeCategorias"] = new SelectList(_context.Categoria.ToList(), "Id", "Nome");
-            pesquisaCurso.ListaDeCursos = await _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar))  .ToListAsync();
+            pesquisaCurso.ListaDeCursos = await _context.Cursos.Where(c => c.Nome.Contains(pesquisaCurso.TextoAPesquisar)).ToListAsync();
             pesquisaCurso.NumResultados = pesquisaCurso.ListaDeCursos.Count();
 
             return View(pesquisaCurso);

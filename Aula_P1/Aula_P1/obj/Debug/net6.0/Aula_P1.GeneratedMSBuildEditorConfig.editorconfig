@@ -19,6 +19,26 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Agendamentos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Agendamentos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Agendamentos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Agendamentos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Agendamentos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/paulo/OneDrive/Área de Trabalho/Pweb_P/Aulas_Pweb/Aula_P1/Aula_P1/Views/Categorias/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmlhc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Aula_P1.Models
 {
     public class Curso
@@ -17,7 +19,10 @@ namespace Aula_P1.Models
         public string DescricaoResumida { get; set; }
 
         public string Rquisitos { get; set; }
-
+        [Display (Name ="Idade mínima",
+            Prompt ="Introduza Idade mínima",
+            Description = "Idade mínima para poder frequentar esta formação")]
+        [Range(14, 100, ErrorMessage = "Mínimo: 14 anos, máximo: 100 anos")]
         public int IdadeMinima { get; set; }
 
         public decimal Price { get; set; }
