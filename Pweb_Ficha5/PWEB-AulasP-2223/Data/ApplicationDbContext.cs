@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 
 namespace PWEB_AulasP_2223.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
         public DbSet<Curso> Cursos{ get; set; }
