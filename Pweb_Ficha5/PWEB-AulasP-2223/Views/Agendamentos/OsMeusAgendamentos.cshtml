@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PWEB_AulasP_2223.Models.Agendamento>
+
+@{
+    ViewData["Title"] = "OsMeusAgendamentos";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Os meus agendamentos</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               UserName
+            </th>
+            <th>
+               PrimeiroNome
+            </th>
+            <th>
+               Último Nome
+            </th>
+            <th>
+               Tipo de Aula
+            </th>
+            <th>
+                Início
+            </th>
+            <th>
+                Fim
+            </th>
+            <th>
+                Preço
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.ApplicationUser.UserName</td>
+        <td>@item.ApplicationUser.PrimeiroNome</td>
+        <td>@item.ApplicationUser.UltimoNome</td>
+        <td>@Html.DisplayFor(modelItem => item.tipoDeAula.Nome)</td>
+        <td>@Html.DisplayFor(modelItem => item.DataInicio.Date)</td>
+        <td>@Html.DisplayFor(modelItem => item.DataFim)</td>
+        <td>@Html.DisplayFor(modelItem => item.Preco)</td>
+</tr>
+}
+    </tbody>
+</table>

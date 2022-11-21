@@ -11,5 +11,7 @@ namespace PWEB_AulasP_2223.Models
         public DateTime DataNascimento { get; set; }
 
         public int NIF { get; set; }
+
+        public ICollection<Agendamento> Agendamentos { get; set; }
     }
 }

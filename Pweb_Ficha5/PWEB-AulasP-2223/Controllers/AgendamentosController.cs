@@ -4,20 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 using PWEB_AulasP_2223.Data;
 using PWEB_AulasP_2223.Models;
 using PWEB_AulasP_2223.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace PWEB_AulasP_2223.Controllers
 {
     public class AgendamentosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager <ApplicationUser>_userManager;
 
-        public AgendamentosController(ApplicationDbContext context)
+        public AgendamentosController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Pedido()
@@ -49,7 +55,7 @@ namespace PWEB_AulasP_2223.Controllers
                 NrMinutos = (pedido.DataFim - pedido.DataInicio).TotalMinutes;
 
                 Agendamento x = new Agendamento();
-                x.Cliente = pedido.Cliente;
+                
                 x.DataFim = pedido.DataFim;
                 x.DataInicio = pedido.DataInicio;
                 x.DuracaoMinutos = NrMinutos;
@@ -73,6 +79,19 @@ namespace PWEB_AulasP_2223.Controllers
         {
             var applicationDbContext = _context.Agendamentos.Include(a => a.tipoDeAula);
             return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: Agendamentos
+        [Authorize]
+        public async Task<IActionResult> OsMeusAgendamentos()
+        {
+            var agendamentos = _context.Agendamentos.
+                Include(a => a.tipoDeAula).
+                Include(a => a.ApplicationUser).
+                Where(a => a.ApplicationUserID == _userManager.GetUserId(User));
+
+
+            return View(await agendamentos.ToListAsync());
         }
 
         // GET: Agendamentos/Details/5
@@ -110,6 +129,11 @@ namespace PWEB_AulasP_2223.Controllers
         {
             ModelState.Remove(nameof(agendamento.tipoDeAula));
             agendamento.DataHoraDoPedido = DateTime.Now;
+            ModelState.Remove(nameof(agendamento.ApplicationUserID));
+            ModelState.Remove(nameof(agendamento.ApplicationUser));
+
+            agendamento.ApplicationUserID = _userManager.GetUserId(User);
+
 
             if (ModelState.IsValid)
             {
