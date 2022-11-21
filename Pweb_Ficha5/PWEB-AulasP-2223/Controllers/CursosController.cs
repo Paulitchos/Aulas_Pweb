@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -137,6 +139,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Cursos/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
 
@@ -152,6 +155,7 @@ namespace PWEB_AulasP_2223.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Nome,Descricao,DescricaoResumida,Requisitos,IdadeMinima,Disponivel,Preco,EmDestaque,CategoriaId")] Curso curso)
         {
             ViewData["ListaDeCategorias"] =
@@ -168,6 +172,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Cursos/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Cursos == null)
@@ -191,6 +196,7 @@ namespace PWEB_AulasP_2223.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,DescricaoResumida,Requisitos,IdadeMinima,Disponivel,Preco,EmDestaque,CategoriaId")] Curso curso)
         {
             if (id != curso.Id)
@@ -225,6 +231,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Cursos/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Cursos == null)
@@ -245,6 +252,7 @@ namespace PWEB_AulasP_2223.Controllers
         // POST: Cursos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Cursos == null)

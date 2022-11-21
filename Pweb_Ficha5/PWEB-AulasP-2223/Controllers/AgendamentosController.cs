@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace PWEB_AulasP_2223.Controllers
 {
+    
     public class AgendamentosController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -75,6 +76,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Agendamentos
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Agendamentos.Include(a => a.tipoDeAula);
@@ -114,6 +116,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Agendamentos/Create
+        [Authorize(Roles = "Cliente")]
         public IActionResult Create()
         {
             ViewData["TipoDeAulaId"] = new SelectList(_context.TipoDeAula, "Id", "Id");
@@ -125,6 +128,7 @@ namespace PWEB_AulasP_2223.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Cliente")]
         public async Task<IActionResult> Create([Bind("Id,Cliente,DataInicio,DataFim,DuracaoHoras,DuracaoMinutos,Preco,DataHoraDoPedido,TipoDeAulaId")] Agendamento agendamento)
         {
             ModelState.Remove(nameof(agendamento.tipoDeAula));
@@ -146,6 +150,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Agendamentos/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Agendamentos == null)
@@ -167,6 +172,7 @@ namespace PWEB_AulasP_2223.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Cliente,DataInicio,DataFim,DuracaoHoras,DuracaoMinutos,Preco,DataHoraDoPedido,TipoDeAulaId")] Agendamento agendamento)
         {
             if (id != agendamento.Id)
@@ -199,6 +205,7 @@ namespace PWEB_AulasP_2223.Controllers
         }
 
         // GET: Agendamentos/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Agendamentos == null)
@@ -220,6 +227,7 @@ namespace PWEB_AulasP_2223.Controllers
         // POST: Agendamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Agendamentos == null)
