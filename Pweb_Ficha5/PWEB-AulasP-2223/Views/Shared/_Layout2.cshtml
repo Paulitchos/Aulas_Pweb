@@ -32,14 +32,13 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-white" asp-area="" asp-controller="Categorias" asp-action="Index">CATEGORIAS</a>
                                 </li>
-                                <li class="nav-item dropdown-item">
-                                    <a class="nav-link dropdown-toggle" href="#"
-                                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        AGENDAMENTOS
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Agendamentos
                                     </a>
-                                    <ul class="dropdown-menu">
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li>
-                                            <a class="dropdown-item" asp-controller="Agendamentos" asp-action="Index">Todos os Agendamentos ></a>
+                                            <a class="dropdown-item" asp-controller="Agendamentos" asp-action="Index">Todos os Agendamentos</a>
                                         </li>
                                         @if(User.Identity.IsAuthenticated){
                                             <li><hr class="dropdown-divider"></li>
