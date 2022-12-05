@@ -197,7 +197,8 @@ namespace PWEB_AulasP_2223.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,DescricaoResumida,Requisitos,IdadeMinima,Disponivel,Preco,EmDestaque,CategoriaId")] Curso curso)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,DescricaoResumida,Requisitos,IdadeMinima,Disponivel,Preco,EmDestaque,CategoriaId")] Curso curso,
+            List<IFormFile> ImagemCurso)
         {
             if (id != curso.Id)
             {
@@ -206,6 +207,16 @@ namespace PWEB_AulasP_2223.Controllers
 
 
             ModelState.Remove(nameof(curso.categoria));
+
+            string path=Directory.GetCurrentDirectory();
+            path = path + "\\wwwroot\\CursosImagens\\" + curso.Id;
+            if (Directory.Exists(path)) {
+            
+            } else
+            {
+                    
+            }
+
 
             if (ModelState.IsValid)
             {

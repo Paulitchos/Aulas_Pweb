@@ -34,7 +34,6 @@ namespace PWEB_AulasP_2223.Models
         [Range(0.5, 99999, ErrorMessage = "Mínimo: 0.50 €")]        
         public decimal? Preco { get; set; }
 
-
         public int? CategoriaId { get; set; }
         public Categoria categoria { get; set; }
 

@@ -12,6 +12,7 @@ namespace PWEB_AulasP_2223.ViewModels
         public string UltimoNome { get; set; }
         public string UserName { get; set; }
         public IEnumerable<string> Roles { get; set; }
+        public byte[]? Avatar { get; set; }
     }
     public class ManageUserRolesViewModel
     {

@@ -59,6 +59,24 @@ namespace PWEB_AulasP_2223.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "O meu Avatar")]
+            public byte[]? Avatar { get; set; }
+            public IFormFile AvatarFile { get; set; }
+
+            [Required]
+            [Display(Name = "PrimeiroNome")]
+            public string PrimeiroNome { get; set; }
+            [Required]
+            [Display(Name = "UltimoNome")]
+            public string UltimoNome { get; set; }
+            [Required]
+            [DataType(DataType.Date)]
+            [Display(Name = "DataNascimento")]
+            public DateTime DataNascimento { get; set; }
+            [Required]
+            [Display(Name = "NIF")]
+            public int NIF { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -70,7 +88,12 @@ namespace PWEB_AulasP_2223.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                DataNascimento = user.DataNascimento,
+                PrimeiroNome = user.PrimeiroNome,
+                UltimoNome = user.UltimoNome,
+                NIF = user.NIF,
+                Avatar = user.Avatar,
             };
         }
 
@@ -111,9 +134,43 @@ namespace PWEB_AulasP_2223.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            if (Input.AvatarFile != null)
+            {
+                if (Input.AvatarFile.Length > (200 * 1024))
+                {
+                    StatusMessage = "Error: Ficheiro demasiado grande";
+                    return RedirectToPage();
+                }
+                // método a implementar – verifica se a extensão é .png,.jpg,.jpeg
+                if (!isValidFileType(Input.AvatarFile.FileName))
+                {
+                    StatusMessage = "Error: Ficheiro não suportado";
+                    return RedirectToPage();
+                }
+                using (var dataStream = new MemoryStream())
+                {
+                    await Input.AvatarFile.CopyToAsync(dataStream);
+                    user.Avatar = dataStream.ToArray();
+                }
+                await _userManager.UpdateAsync(user);
+            }
+
+
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
         }
+    
+        public bool isValidFileType(string fileName)
+        {
+            string extension = fileName.Substring(fileName.LastIndexOf('.') + 1);
+            if (extension == "png" || extension == "jpg" || extension == "jpeg")
+                return true;
+
+            return false;
+        }
     }
 }
+
+
+

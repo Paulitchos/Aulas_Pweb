@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace PWEB_AulasP_2223.Models
 {
@@ -13,5 +15,8 @@ namespace PWEB_AulasP_2223.Models
         public int NIF { get; set; }
 
         public ICollection<Agendamento> Agendamentos { get; set; }
+
+        [Display(Name = "O meu Avatar")]
+        public byte[]? Avatar { get; set; }
     }
 }
