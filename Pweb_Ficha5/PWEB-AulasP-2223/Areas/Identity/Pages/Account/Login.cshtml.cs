@@ -100,6 +100,8 @@ namespace PWEB_AulasP_2223.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
+
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)

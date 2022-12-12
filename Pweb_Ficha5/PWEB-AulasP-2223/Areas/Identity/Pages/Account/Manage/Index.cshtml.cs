@@ -105,6 +105,17 @@ namespace PWEB_AulasP_2223.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
+            var cookieOptions = new CookieOptions();
+            cookieOptions.Expires = DateTime.Now.AddDays(10);
+            cookieOptions.Path = "/";
+            var cookie = Request.Cookies["PWEB_BgColor"];
+            if (cookie == null)
+                cookie = "yellow";
+            // adiciona / modifica o cookie com o nome PWEB_BgColor
+            Response.Cookies.Append("PWEB_BgColor", cookie, cookieOptions);
+            // elimina o cookie com o nome PWEB_BgColor
+            // Response.Cookies.Delete("PWEB_BgColor");
+
             await LoadAsync(user);
             return Page();
         }
