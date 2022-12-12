@@ -188,6 +188,20 @@ namespace PWEB_AulasP_2223.Controllers
 
             ViewData["ListaDeCategorias"] = new SelectList(_context.Categorias.ToList(), "Id", "Nome", curso.CategoriaId);
 
+            string coursePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/CursosImagens/" + id.ToString());
+
+            if (!Directory.Exists(coursePath))
+                Directory.CreateDirectory(coursePath);
+
+            var files = from file in Directory.EnumerateFiles(coursePath)
+                        select string.Format("/CursosImagens/{0}/{1}",id,Path.GetFileName(file));
+
+            ViewData["CursosImagens"] = files;
+
+         
+
+            
+
             return View(curso);
         }
 
@@ -198,7 +212,7 @@ namespace PWEB_AulasP_2223.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Descricao,DescricaoResumida,Requisitos,IdadeMinima,Disponivel,Preco,EmDestaque,CategoriaId")] Curso curso,
-            List<IFormFile> ImagemCurso)
+           [FromForm] List<IFormFile> ImagemCurso)
         {
             if (id != curso.Id)
             {
@@ -208,14 +222,7 @@ namespace PWEB_AulasP_2223.Controllers
 
             ModelState.Remove(nameof(curso.categoria));
 
-            string path=Directory.GetCurrentDirectory();
-            path = path + "\\wwwroot\\CursosImagens\\" + curso.Id;
-            if (Directory.Exists(path)) {
-            
-            } else
-            {
-                    
-            }
+           
 
 
             if (ModelState.IsValid)
@@ -224,6 +231,37 @@ namespace PWEB_AulasP_2223.Controllers
                 {
                     _context.Update(curso);
                     await _context.SaveChangesAsync();
+
+                    string path = Directory.GetCurrentDirectory();
+                    Path.Combine( path, "wwwroot/CursosImagens");
+
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+
+
+                    string coursePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/CursosImagens/" + id.ToString());
+
+                    if(!Directory.Exists(coursePath))
+                        Directory.CreateDirectory(coursePath);
+
+                    foreach (var formFile in ImagemCurso)
+                    {
+                        if(formFile.Length > 0)
+                        {
+                            var filePath = Path.Combine(coursePath,Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName));
+
+                            while (System.IO.File.Exists(filePath))
+                            {
+                                filePath= Path.Combine(coursePath,Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName));
+                            }
+                            using (var stream = System.IO.File.Create(filePath))
+                            {
+                                await formFile.CopyToAsync(stream);
+                            }
+                        }
+                    }
+
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
