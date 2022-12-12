@@ -87,6 +87,11 @@
                         </p>
                             
                     }else{
+                        <a asp-action="deleteImage" asp-route-id="@Model.Id" asp-route-image="@item">
+                            <svg bootstrap-icon="XCircleFill" onclick="return confirm('Tem a certeza que deseja apagar esta imagem')" class="text-danger" width="24" height="24"
+                                                              aria-label="Trash">
+                            </svg>
+                        </a>
                         <div class="col p-2 m-2" style="border-radius:10px;">
                             <img src="@item" width="350rem" height="350rem" />
                         </div>

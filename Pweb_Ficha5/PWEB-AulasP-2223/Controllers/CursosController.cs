@@ -322,5 +322,21 @@ namespace PWEB_AulasP_2223.Controllers
         {
             return _context.Cursos.Any(e => e.Id == id);
         }
+
+        public async Task<IActionResult> deleteImage(int id, string image)
+        {
+            if(id == null || _context.Cursos == null)
+                return NotFound();
+
+            var curso = await _context.Cursos.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (curso == null)
+                return NotFound();
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/" + image);
+
+            System.IO.File.Delete(filePath);
+            return RedirectToAction("Edit", new { Id = id });
+        }
     }
 }
