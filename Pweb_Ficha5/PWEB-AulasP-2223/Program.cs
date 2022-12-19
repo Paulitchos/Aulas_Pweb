@@ -25,17 +25,6 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 var app = builder.Build();
-/*
-…
-…
-*/
-app.UseAuthentication();
-app.UseAuthorization();
-// session state
-app.UseSession();
-app.MapControllerRoute(
- name: "default",
- pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
 using (var scope = app.Services.CreateScope())
@@ -72,6 +61,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

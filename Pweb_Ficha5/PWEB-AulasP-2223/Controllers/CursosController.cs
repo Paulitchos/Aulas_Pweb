@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using PWEB_AulasP_2223.Data;
+using PWEB_AulasP_2223.Helpers;
 using PWEB_AulasP_2223.Models;
 using PWEB_AulasP_2223.ViewModels;
 
@@ -337,6 +338,36 @@ namespace PWEB_AulasP_2223.Controllers
 
             System.IO.File.Delete(filePath);
             return RedirectToAction("Edit", new { Id = id });
+        }
+
+        public async Task<IActionResult> Comprar(int? id)
+        {
+            if (id == null || _context.Cursos == null)
+            {
+                return NotFound();
+            }
+
+            var curso = await _context.Cursos
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (curso == null)
+            {
+                return NotFound();
+            }
+
+            var CarrinhoDeCompras = HttpContext.Session.GetJson<Carrinho>("CarrinhoDeCompras") ?? new Carrinho();
+
+            CarrinhoDeCompras.AddItem(new CarrinhoItem { CursoId = curso.Id, CursoNome = curso.Nome, PrecoUnit = (decimal)curso.Preco },1);
+
+            HttpContext.Session.SetJson("CarrinhoDeCompras", CarrinhoDeCompras);
+
+            return RedirectToAction("Carrinho");
+
+        }
+
+        public async Task<IActionResult> Carrinho()
+        {
+            var CarrinhoDeCompras = HttpContext.Session.GetJson<Carrinho>("CarrinhoDeCompras") ?? new Carrinho();
+            return View(CarrinhoDeCompras);
         }
     }
 }

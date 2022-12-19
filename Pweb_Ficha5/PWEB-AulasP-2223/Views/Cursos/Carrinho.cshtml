@@ -1,0 +1,48 @@
+﻿@model PWEB_AulasP_2223.Helpers.Carrinho
+<h1>Carrinho de compras</h1>
+
+Items no carrinho: <span class="badge bg-secondary">@Model.items.Count</span>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>Preço Unitário</th>
+            <th>Quantidade</th>
+            <th>Sub-total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.items.Count() == 0)
+        {
+            <p class="alert alert-warning">
+                Não existe curso no carrinho.
+            </p>
+        } else{
+            @foreach (var item in Model.items)
+            {
+                <tr>
+                    <td>@item.CursoNome</td>
+                    <td>@item.PrecoUnit</td>
+                    <td>@item.Quantidade</td>
+                    <td>@{
+                            decimal sub =@item.PrecoUnit * @item.Quantidade;
+                        }@sub</td>
+                
+                </tr>
+            }
+        }
+    </tbody>
+        
+    <tfoot>
+        <tr>
+            <td class="order-last">@Model.Total()</td>
+        </tr>
+        
+    </tfoot>
+</table>
+<div class="row">
+    <div class="col-12 text-end ">
+        <a href="#" class="btn btn-primary">continuar a comprar</a>
+        <a href="#" class="btn btn-success">checkout</a>
+    </div>
+</div>
